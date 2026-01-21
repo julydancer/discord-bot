@@ -13,7 +13,8 @@ const client = new Client({
 
 const ID_GLAUBER = "413368679313440769";
 const ID_TAKESHI = "334331130927120386";
-const ID_ELVI = "1163232722538483812";
+const ID_ELVI = "824693504306577438";
+CONST ID_NETO = "1163232722538483812"
 const ID_ANA = "127792441238487040"
 
 client.on("messageCreate", (message) => {
