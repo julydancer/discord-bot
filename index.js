@@ -39,6 +39,12 @@ client.on("messageCreate", (message) => {
   ){
     message.reply("VAI SE FUDER ELVI VIRA GENTE")
   }
+  else if(
+    message.author.id === ID_ANA &&
+    texto === "push"
+  ){
+    message.reply("GET 200")
+  }
 });
   
 
