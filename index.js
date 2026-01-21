@@ -17,6 +17,19 @@ const ID_ELVI = "824693504306577438";
 const ID_NETO = "1163232722538483812";
 const ID_ANA = "127792441238487040";
 
+const frasesElvi = [
+  "branco",
+  "preto",
+  "amarelo",
+  "rosa",
+  "roxo",
+  "não gosto de",
+  "acho",
+  "nada contra",
+  "cara"
+];
+
+
 client.on("messageCreate", (message) => {
   if (message.author.bot) return;
 
@@ -28,6 +41,10 @@ client.on("messageCreate", (message) => {
   ) {
     message.reply("sucumba glauber");
   }
+  else if(message.author.id === ID_GLAUBER && texto.includes("me respeita"))
+  {
+    message.reply("Não glauber, ninguem te respeita")
+  }
   else if(
     message.author.id === ID_TAKESHI &&
     texto === "saas"
@@ -35,13 +52,13 @@ client.on("messageCreate", (message) => {
     message.reply("https://tenor.com/view/eddie-zato-zato-guilty-gear-eddie-clap-rde-gif-13918902029952866835")
   }
   else if(
-    message.author.id === ID_ELVI
+    message.author.id === ID_ELVI && frasesElvi.some(frase => texto.includes(frase))
   ){
-    message.reply("VAI SE FUDER ELVI VIRA GENTE")
+    if(texto )message.reply("caralho elvi para de ser racista")
   }
-  else if(
+   else if(
     message.author.id === ID_ANA &&
-    texto === "push"
+    texto === "teste"
   ){
     message.reply("GET 200")
   }
