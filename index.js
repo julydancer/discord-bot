@@ -62,6 +62,12 @@ client.on("messageCreate", (message) => {
   ){
     message.reply("GET 200")
   }
+  else if(
+    message.author.id === ID_ANA &&
+    texto.includes("push")
+  ){
+    message.reply("PUSH 200")
+  }
 });
   
 
