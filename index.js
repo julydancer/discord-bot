@@ -37,7 +37,7 @@ client.on("messageCreate", (message) => {
 
   if (
     message.author.id === ID_GLAUBER &&
-    texto === "bom dia"
+    texto.includes("bom dia")
   ) {
     message.reply("sucumba glauber");
   }
@@ -58,7 +58,7 @@ client.on("messageCreate", (message) => {
   }
    else if(
     message.author.id === ID_ANA &&
-    texto === "teste"
+    texto.includes("teste")
   ){
     message.reply("GET 200")
   }
