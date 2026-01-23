@@ -69,6 +69,26 @@ client.on("messageCreate", (message) => {
   ){
     message.reply("PUSH 200")
   }
+  else if(
+    texto.includes("cola hunt")
+  ){
+    message.reply("https://tenor.com/pt-BR/view/hunt-showdown-hunt-hunt-meme-get-on-hunt-showdown-gif-24553870")
+  }
+  else if(
+    texto.includes("bo hunt")
+  ){
+    message.reply("https://tenor.com/pt-BR/view/hunt-showdown-cowboy-cyber-punk-bayou-katana-gif-14008885467956326906")
+  }
+  else if(
+    texto.includes("sem hunt")
+  ){
+    message.reply("https://tenor.com/pt-BR/view/hunt-showdown-hunt-meme-hunt-showdown-meme-hunt-showdown-get-on-hunt-get-on-hunt-gif-16078836551526038956")
+  }
+  else if(
+    texto.includes("zero hunt")
+  ){
+    message.reply("https://tenor.com/pt-BR/view/hunt-showdown-cant-get-on-hunt-when-bro-cant-get-on-hunt-hunt-meme-hunt-showdown-meme-gif-14538438963849915163")
+  }
 });
   
 
