@@ -48,7 +48,7 @@ client.on("messageCreate", (message) => {
     
   else if(
     message.author.id === ID_TAKESHI &&
-    texto === "saas"
+    texto.includes("saas")
   ) {
     message.reply("https://tenor.com/view/eddie-zato-zato-guilty-gear-eddie-clap-rde-gif-13918902029952866835")
   }
