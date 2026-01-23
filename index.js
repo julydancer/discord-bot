@@ -41,10 +41,11 @@ client.on("messageCreate", (message) => {
   ) {
     message.reply("sucumba glauber");
   }
-  else if(message.author.id === ID_GLAUBER && texto.includes("me respeita"))
+  else if(message.author.id === ID_GLAUBER && texto.includes("respeita"))
   {
     message.reply("Não glauber, ninguem te respeita")
   }
+    
   else if(
     message.author.id === ID_TAKESHI &&
     texto === "saas"
