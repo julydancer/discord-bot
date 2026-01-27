@@ -41,6 +41,10 @@ client.on("messageCreate", (message) => {
   ) {
     message.reply("sucumba glauber");
   }
+  else if(message.author.id !== ID_GLAUBER && texto.includes("bom dia"))
+  {
+    message.reply("Tenha um ótimo dia! Você é incrivel!")
+  } 
   else if(message.author.id === ID_GLAUBER && texto.includes("respeita"))
   {
     message.reply("Não glauber, ninguem te respeita")
