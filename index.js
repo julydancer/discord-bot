@@ -26,7 +26,8 @@ const frasesElvi = [
   "não gosto de",
   "acho",
   "nada contra",
-  "cara"
+  "cara",
+  "mano"
 ];
 
 
