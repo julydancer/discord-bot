@@ -27,7 +27,11 @@ const frasesElvi = [
   "acho",
   "nada contra",
   "cara",
-  "mano"
+  "mano",
+  "negro",
+  "noir",
+  "black",
+  "pink"
 ];
 
 
