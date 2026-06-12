@@ -33,6 +33,24 @@ const frasesElvi = [
   "black",
   "pink"
 ];
+const sleeperAgent = [
+  "twst",
+  "twisted wonderland",
+  "chuuya",
+  "malleus",
+  "dbd",
+  "power rangers",
+  "orv",
+  "omniscient reader's viewpoint",
+  "omniscient",
+  "star wars",
+  "persona",
+  "p5r",
+  "p3r",
+  "royal guard",
+  "dmc",
+  "jojo"
+];
 
 
 client.on("messageCreate", (message) => {
@@ -103,7 +121,10 @@ client.on("messageCreate", (message) => {
   ){
     message.reply("https://livepix.gg/julydancer")
   }
+  if sleeperAgent.some(frase => texto.includes(frase))
+  ){
+    if(texto )message.reply("vai lá autista <@${ID_ANA}>")
+  }
 });
   
-
 client.login(process.env.TOKEN);
