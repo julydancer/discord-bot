@@ -98,6 +98,11 @@ client.on("messageCreate", (message) => {
   ){
     message.reply("https://tenor.com/view/hunt-showdown-cant-get-on-hunt-when-bro-cant-get-on-hunt-hunt-meme-hunt-showdown-meme-gif-14538438963849915163")
   }
+  if(
+    texto.includes("pix")
+  ){
+    message.reply("https://livepix.gg/julydancer")
+  }
 });
   
 
