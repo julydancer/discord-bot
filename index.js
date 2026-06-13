@@ -20,6 +20,7 @@ const ID_NETO = "1163232722538483812";
 const ID_ANA = "127792441238487040";
 const ID_RUBAO = "1355243350869020873";
 
+
 client.on("messageCreate", async (message) => {
   if (message.author.bot) return;
 
