@@ -3,11 +3,13 @@ console.log(`Token length: ${process.env.TOKEN.length}`);
 console.log(`Token: '${process.env.TOKEN}'`);
 const { Client, GatewayIntentBits } = require("discord.js");
 
+
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.MessageContent,
+    GatewayIntentBits.GuildMembers,
   ],
 });
 
@@ -16,6 +18,20 @@ const ID_TAKESHI = "334331130927120386";
 const ID_ELVI = "824693504306577438";
 const ID_NETO = "1163232722538483812";
 const ID_ANA = "127792441238487040";
+const ID_RUBAO = "1355243350869020873";
+
+client.on("messageCreate", async (message) => {
+  if (message.author.bot) return;
+
+  if (message.author.id === ID_RUBAO) {
+    try {
+      const ate = new Date(Date.now() + 60_000);
+      await message.member.timeout(ate - Date.now(), "Falou");
+    } catch (err) {
+      console.error(err);
+    }
+  }
+}); 
 
 const frasesElvi = [
   "branco",
@@ -49,7 +65,8 @@ const sleeperAgent = [
   "p3r",
   "royal guard",
   "dmc",
-  "jojo"
+  "jojo",
+  "sonic"
 ];
 
 
@@ -121,9 +138,12 @@ client.on("messageCreate", (message) => {
   ){
     message.reply("https://livepix.gg/julydancer")
   }
-  if sleeperAgent.some(frase => texto.includes(frase))
+  if (sleeperAgent.some(frase => texto.includes(frase))
   ){
-    if(texto )message.reply("vai lá autista <@${ID_ANA}>")
+    if(texto )message.reply(`vai lá autista <@${ID_ANA}>`)
+  }
+  if (texto.includes("mamdo") || texto.includes("mambo")) {
+    message.reply("https://tenor.com/view/mambo-uma-musume-gif-4231814947166331056")
   }
 });
   
