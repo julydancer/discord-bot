@@ -2,7 +2,7 @@ require("dotenv").config();
 console.log(`Token length: ${process.env.TOKEN.length}`);
 console.log(`Token: '${process.env.TOKEN}'`);
 const { Client, GatewayIntentBits } = require("discord.js");
-
+//Teste
 
 const client = new Client({
   intents: [
