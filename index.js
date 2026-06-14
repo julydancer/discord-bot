@@ -100,6 +100,9 @@ client.on("messageCreate", (message) => {
   if (message.author_id === ID_NETO && texto.includes("`<@${ID_SORROW}>`"){
     message.reply("https://tenor.com/pt-BR/view/hot-guy-kissing-gif-19715425")
   }
+  if (texto.includes("`<@${ID_TAKESHI}>`"){
+    message.reply("https://tenor.com/view/takeshi-takeshi-moment-thumbs-up-ta-takesh-gif-24206951")
+  }
     
   else if(
     message.author.id === ID_TAKESHI &&
