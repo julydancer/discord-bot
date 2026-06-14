@@ -111,7 +111,7 @@ client.on("messageCreate", (message) => {
     message.reply("https://tenor.com/view/eddie-zato-zato-guilty-gear-eddie-clap-rde-gif-13918902029952866835")
   }
   else if(
-    message.author.id === ID_ELVI && frasesElvi.some(frase => texto.includes(frase))
+    (message.author.id === ID_ELVI || message.author.id === ID_SORROW) && frasesElvi.some(frase => texto.includes(frase))
   ){
     if(texto )message.reply("caralho elvi para de ser racista")
   }
