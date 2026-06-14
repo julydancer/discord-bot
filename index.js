@@ -19,6 +19,7 @@ const ID_ELVI = "824693504306577438";
 const ID_NETO = "1163232722538483812";
 const ID_ANA = "127792441238487040";
 const ID_RUBAO = "1355243350869020873";
+const ID_SORROW = '806241214302781466'
 
 
 client.on("messageCreate", async (message) => {
@@ -89,6 +90,15 @@ client.on("messageCreate", (message) => {
   else if(message.author.id === ID_GLAUBER && texto.includes("respeita"))
   {
     message.reply("Não glauber, ninguem te respeita")
+  }
+  else if (
+    message.author.id === ID_ELVI &&
+    texto.includes("bom dia")
+  ) {
+    message.reply("vai se fuder mlk");
+  }
+  if (message.author_id === ID_NETO && texto.includes("`<@${ID_SORROW}>`"){
+    message.reply("https://tenor.com/pt-BR/view/hot-guy-kissing-gif-19715425")
   }
     
   else if(
