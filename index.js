@@ -97,7 +97,7 @@ client.on("messageCreate", (message) => {
   ) {
     message.reply("vai se fuder mlk");
   }
-  if (message.author_id === ID_NETO && texto.includes("`<@${ID_SORROW}>`"){
+  if (message.author_id === ID_NETO && texto.includes("`<@${ID_SORROW}>`")){
     message.reply("https://tenor.com/pt-BR/view/hot-guy-kissing-gif-19715425")
   }
   if (texto.includes("`<@${ID_TAKESHI}>`"){
