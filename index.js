@@ -117,39 +117,44 @@ const nomeCanal = message.channel.name?.toLowerCase() || "";
   ) {
     message.reply("https://tenor.com/view/eddie-zato-zato-guilty-gear-eddie-clap-rde-gif-13918902029952866835")
   }
-  else if(
-    (message.author.id === ID_ELVI || message.author.id === ID_SORROW) && frasesElvi.some(frase => texto.includes(frase)) // adiciona o sorrow nas frases
+  if(
+    message.author.id === ID_ELVI && frasesElvi.some(frase => texto.includes(frase)) // adiciona a elvi nas frases
   ){
-    if(texto )message.reply("caralho elvi para de ser racista")
+    if(texto)message.reply("caralho elvi para de ser racista")
   }
-   else if(
+  if(
+    message.author.id === ID_SORROW) && frasesElvi.some(frase => texto.includes(frase)) // adiciona o sorrow nas frases
+  ){
+    if(texto)message.reply("pqp sorrow para de ser racista porra")
+  }
+  if(
     message.author.id === ID_ANA &&
     texto.includes("teste")
   ){
     message.reply("GET 200")
   }
-  else if(
+  if(
     message.author.id === ID_ANA &&
     texto.includes("push")
   ){
     message.reply("PUSH 200")
   }
-  else if(
+  if(
     texto.includes("cola hunt")
   ){
     message.reply("https://tenor.com/view/hunt-showdown-hunt-hunt-meme-get-on-hunt-showdown-gif-24553870")
   }
-  else if(
+  if(
     texto.includes("bo hunt")
   ){
     message.reply("https://tenor.com/view/hunt-showdown-cowboy-cyber-punk-bayou-katana-gif-14008885467956326906")
   }
-  else if(
+  if(
     texto.includes("sem hunt")
   ){
     message.reply("https://tenor.com/view/hunt-showdown-hunt-meme-hunt-showdown-meme-hunt-showdown-get-on-hunt-get-on-hunt-gif-16078836551526038956")
   }
-  else if(
+  if(
     texto.includes("zero hunt")
   ){
     message.reply("https://tenor.com/view/hunt-showdown-cant-get-on-hunt-when-bro-cant-get-on-hunt-hunt-meme-hunt-showdown-meme-gif-14538438963849915163")
