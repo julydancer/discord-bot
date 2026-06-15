@@ -20,6 +20,7 @@ const ID_NETO = "1163232722538483812";
 const ID_ANA = "127792441238487040";
 const ID_RUBAO = "1355243350869020873";
 const ID_SORROW = "806241214302781466";
+const ID_CLARY = "923638823123030016";
 
 client.on("messageCreate", async (message) => {
   if (message.author.bot) return;
@@ -163,6 +164,9 @@ const nomeCanal = message.channel.name?.toLowerCase() || "";
     texto.includes("pix")
   ){
     message.reply("https://livepix.gg/julydancer")
+  }
+  if (texto.includes(`<@${ID_CLARY}>`)){
+    message.reply("https://media.discordapp.net/attachments/1515169300145639470/1516134338427748392/Screenshot_20260615-1436152.jpg?ex=6a3189a2&is=6a303822&hm=4cba158c8fa8a51c91804d6a92ce0d52040bafd54e8fc12f35a6e711f3074fa8&=&format=webp")
   }
   if (
     !nomeCanal.includes("mudae") &&
