@@ -53,7 +53,8 @@ const frasesElvi = [
   "sul",
   "nordestino",
   "sulista",
-  "sp"
+  "sp",
+  "judeu"
 ];
 const sleeperAgent = [
   "twst",
