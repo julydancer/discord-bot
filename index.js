@@ -120,6 +120,11 @@ const nomeCanal = message.channel.name?.toLowerCase() || "";
     message.reply("https://tenor.com/view/eddie-zato-zato-guilty-gear-eddie-clap-rde-gif-13918902029952866835")
   }
   if(
+    message.author.id === ID_TAKESHI && texto.includes(""){
+    message.reply("ainda bem que o takeshi ama filipinos")
+    message.reply("https://tenor.com/view/proud-to-be-filipino-jhon-mark-perez-kapitaaannn-pinoy-masaya-gif-17020131")
+  }
+  if(
     message.author.id === ID_ELVI && frasesElvi.some(frase => texto.includes(frase)) // adiciona a elvi nas frases
   ){
     if(texto)message.reply("caralho elvi para de ser racista")
