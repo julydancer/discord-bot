@@ -20,12 +20,9 @@ const ID_NETO = "1163232722538483812";
 const ID_ANA = "127792441238487040";
 const ID_RUBAO = "1355243350869020873";
 const ID_SORROW = "806241214302781466";
-const nomeCanal = message.channel.name?.toLowerCase() || "";
-const ehCanalMudae = nomeCanal.includes("mudae");
 
 client.on("messageCreate", async (message) => {
   if (message.author.bot) return;
-
   if (message.author.id === ID_RUBAO) {
     try {
       const ate = new Date(Date.now() + 60_000);
@@ -84,8 +81,8 @@ const sleeperAgent = [
 
 client.on("messageCreate", (message) => {
   if (message.author.bot) return;
-
   const texto = message.content.toLowerCase().trim();
+const nomeCanal = message.channel.name?.toLowerCase() || "";
 
   if (
     message.author.id === ID_GLAUBER &&
@@ -107,14 +104,14 @@ client.on("messageCreate", (message) => {
   ) {
     message.reply("vai se fuder mlk");
   }
-  if (message.author_id === ID_NETO && texto.includes(`<@${ID_SORROW}>`)){
+  if (message.author.id === ID_NETO && texto.includes(`<@${ID_SORROW}>`)){
     message.reply("https://tenor.com/pt-BR/view/hot-guy-kissing-gif-19715425")
   }
   if (texto.includes(`<@${ID_TAKESHI}>`)){
     message.reply("https://tenor.com/view/takeshi-takeshi-moment-thumbs-up-ta-takesh-gif-24206951")
   }
     
-  else if(
+  if(
     message.author.id === ID_TAKESHI &&
     texto.includes("saas")
   ) {
@@ -162,10 +159,11 @@ client.on("messageCreate", (message) => {
   ){
     message.reply("https://livepix.gg/julydancer")
   }
-  if (!ehCanalMudae &&
-    sleeperAgent.some(frase => texto.includes(frase))
-  ){
-    if(texto)message.reply(`vai lá autista <@${ID_ANA}>, brilha`)
+  if (
+    !nomeCanal.includes("mudae") &&
+    sleeperAgent.some(frase => texto.includes(frase.toLowerCase()))
+  ) {
+    message.reply(`vai lá autista <@${ID_ANA}>, brilha`);
   }
   if (texto.includes("mamdo") || texto.includes("mambo")) {
     message.reply("https://tenor.com/view/mambo-uma-musume-gif-4231814947166331056")
