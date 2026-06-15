@@ -124,7 +124,7 @@ const nomeCanal = message.channel.name?.toLowerCase() || "";
     if(texto)message.reply("caralho elvi para de ser racista")
   }
   if(
-    message.author.id === ID_SORROW) && frasesElvi.some(frase => texto.includes(frase)) // adiciona o sorrow nas frases
+    message.author.id === ID_SORROW && frasesElvi.some(frase => texto.includes(frase)) // adiciona o sorrow nas frases
   ){
     if(texto)message.reply("pqp sorrow para de ser racista porra")
   }
