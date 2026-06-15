@@ -20,7 +20,8 @@ const ID_NETO = "1163232722538483812";
 const ID_ANA = "127792441238487040";
 const ID_RUBAO = "1355243350869020873";
 const ID_SORROW = "806241214302781466";
-
+const nomeCanal = message.channel.name?.toLowerCase() || "";
+const ehCanalMudae = nomeCanal.includes("mudae");
 
 client.on("messageCreate", async (message) => {
   if (message.author.bot) return;
@@ -49,7 +50,12 @@ const frasesElvi = [
   "negro",
   "noir",
   "black",
-  "pink"
+  "pink",
+  "nordeste",
+  "sul",
+  "nordestino",
+  "sulista",
+  "sp"
 ];
 const sleeperAgent = [
   "twst",
@@ -68,7 +74,11 @@ const sleeperAgent = [
   "royal guard",
   "dmc",
   "jojo",
-  "sonic"
+  "sonic",
+  "dbd",
+  "Tengen Toppa Gurren Lagann",
+  "TTGL",
+  "Gurren Lagann"
 ];
 
 
@@ -152,13 +162,18 @@ client.on("messageCreate", (message) => {
   ){
     message.reply("https://livepix.gg/julydancer")
   }
-  if (sleeperAgent.some(frase => texto.includes(frase))
+  if (!ehCanalMudae &&
+    sleeperAgent.some(frase => texto.includes(frase))
   ){
-    if(texto )message.reply(`vai lá autista <@${ID_ANA}>`)
+    if(texto)message.reply(`vai lá autista <@${ID_ANA}>, brilha`)
   }
   if (texto.includes("mamdo") || texto.includes("mambo")) {
     message.reply("https://tenor.com/view/mambo-uma-musume-gif-4231814947166331056")
   }
+  if (texto.includes(`<@${ID_NETO}>`)){
+    message.reply("https://tenor.com/view/rem-deadlock-belly-meme-gif-6285562892747082921")
+  }
+    
 });
   
 client.login(process.env.TOKEN);
