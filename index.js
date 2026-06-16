@@ -92,6 +92,12 @@ const nomeCanal = message.channel.name?.toLowerCase() || "";
   ) {
     message.reply("sucumba glauber");
   }
+  else if (
+    message.author.id === ID_ELVI &&
+    texto.includes("bom dia")
+  ) {
+    message.reply("vai se fuder mlk");
+  }
   else if(message.author.id !== ID_GLAUBER && texto.includes("bom dia"))
   {
     message.reply("Tenha um ótimo dia! Você é incrivel!")
@@ -100,12 +106,7 @@ const nomeCanal = message.channel.name?.toLowerCase() || "";
   {
     message.reply("Não glauber, ninguem te respeita")
   }
-  else if (
-    message.author.id === ID_ELVI &&
-    texto.includes("bom dia")
-  ) {
-    message.reply("vai se fuder mlk");
-  }
+  
   if (message.author.id === ID_NETO && texto.includes(`<@${ID_SORROW}>`)){
     message.reply("https://tenor.com/view/hot-guy-kissing-gif-19715425")
   }
@@ -134,6 +135,10 @@ const nomeCanal = message.channel.name?.toLowerCase() || "";
   ){
     if(texto)message.reply("pqp sorrow para de ser racista porra")
   }
+  else if(
+    message.author.id === ID_SORROW && texto.includes("judeu"){
+      message.reply("https://cdn.discordapp.com/attachments/1051599284342116362/1516140812008689674/Screenshot_20260615_150035_Discord2.jpg?ex=6a32386a&is=6a30e6ea&hm=504251b8296397643ceee2285e82ee6d4888d2ec3b3e3f21123a66c0f52d6b83&")
+    }
   if(
     message.author.id === ID_ANA &&
     texto.includes("teste")
