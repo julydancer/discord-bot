@@ -164,6 +164,11 @@ const nomeCanal = message.channel.name?.toLowerCase() || "";
     message.reply("https://tenor.com/view/hunt-showdown-cowboy-cyber-punk-bayou-katana-gif-14008885467956326906")
   }
   if(
+    texto.includes("bora hunt")
+  ){
+    message.reply("https://tenor.com/view/hunt-showdown-get-on-hunt-get-on-hunt-showdown-bro-get-on-hunt-showdown-this-could-be-us-gif-85665306913320641")
+  }
+  if(
     texto.includes("sem hunt")
   ){
     message.reply("https://tenor.com/view/hunt-showdown-hunt-meme-hunt-showdown-meme-hunt-showdown-get-on-hunt-get-on-hunt-gif-16078836551526038956")
