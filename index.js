@@ -178,9 +178,9 @@ const nomeCanal = message.channel.name?.toLowerCase() || "";
   ){
     message.reply("https://livepix.gg/julydancer")
   }
-  if (texto.includes(`<@${ID_CLARY}>`)){
+  /*if (texto.includes(`<@${ID_CLARY}>`)){
     message.reply("https://media.discordapp.net/attachments/1515169300145639470/1516134338427748392/Screenshot_20260615-1436152.jpg?ex=6a3189a2&is=6a303822&hm=4cba158c8fa8a51c91804d6a92ce0d52040bafd54e8fc12f35a6e711f3074fa8&=&format=webp")
-  }
+  }*/
   if (
     !nomeCanal.includes("mudae") &&
     sleeperAgent.some(frase => texto.includes(frase.toLowerCase()))
