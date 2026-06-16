@@ -121,7 +121,7 @@ const nomeCanal = message.channel.name?.toLowerCase() || "";
     message.reply("https://tenor.com/view/eddie-zato-zato-guilty-gear-eddie-clap-rde-gif-13918902029952866835")
   }
   if(
-    message.author.id === ID_TAKESHI && texto.includes(""){
+    message.author.id === ID_TAKESHI && (texto.includes("filipinos") ||texto.includes("filipina") {
     message.reply("ainda bem que o takeshi ama filipinos")
     message.reply("https://tenor.com/view/proud-to-be-filipino-jhon-mark-perez-kapitaaannn-pinoy-masaya-gif-17020131")
   }
