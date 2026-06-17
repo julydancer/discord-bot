@@ -1,8 +1,12 @@
 require("dotenv").config(); 
-console.log(`Token length: ${process.env.TOKEN.length}`);
+console.log(`Token length: ${process.env.TOKEN?.length ?? 0}`);
 console.log(`Token: '${process.env.TOKEN}'`);
 const { Client, GatewayIntentBits } = require("discord.js");
-//Teste
+const readline = require("readline");
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
 
 const client = new Client({
   intents: [
@@ -12,6 +16,36 @@ const client = new Client({
     GatewayIntentBits.GuildMembers,
   ],
 });
+
+client.once("ready", () => {
+  console.log(`Logado como ${client.user.tag}`);
+
+  rl.on("line", async (input) => {
+    try {
+      // Formato:
+      // send CANAL_ID Mensagem aqui
+      if (input.startsWith("send ")) {
+        const [, channelId, ...msg] = input.split(" ");
+        const mensagem = msg.join(" ");
+
+        const canal = await client.channels.fetch(channelId);
+
+        if (!canal?.isTextBased()) {
+          console.log("Canal inválido.");
+          return;
+        }
+
+        await canal.send(mensagem);
+        console.log("Mensagem enviada.");
+      }
+    } catch (err) {
+      console.error("Erro:", err);
+    }
+  });
+});
+//Teste
+
+
 
 const ID_GLAUBER = "413368679313440769";
 const ID_TAKESHI = "334331130927120386";
