@@ -1,12 +1,7 @@
 require("dotenv").config(); 
 console.log(`Token length: ${process.env.TOKEN?.length ?? 0}`);
 console.log(`Token: '${process.env.TOKEN}'`);
-const { Client, GatewayIntentBits } = require("discord.js");
-const readline = require("readline");
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
+const { Client, GatewayIntentBits, Partials} = require("discord.js");
 
 const client = new Client({
   intents: [
@@ -14,37 +9,10 @@ const client = new Client({
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.MessageContent,
     GatewayIntentBits.GuildMembers,
+    GatewayIntentBits.DirectMessages,
   ],
+  partials: [Partials.channel],
 });
-
-client.once("ready", () => {
-  console.log(`Logado como ${client.user.tag}`);
-
-  rl.on("line", async (input) => {
-    try {
-      // Formato:
-      // send CANAL_ID Mensagem aqui
-      if (input.startsWith("send ")) {
-        const [, channelId, ...msg] = input.split(" ");
-        const mensagem = msg.join(" ");
-
-        const canal = await client.channels.fetch(channelId);
-
-        if (!canal?.isTextBased()) {
-          console.log("Canal inválido.");
-          return;
-        }
-
-        await canal.send(mensagem);
-        console.log("Mensagem enviada.");
-      }
-    } catch (err) {
-      console.error("Erro:", err);
-    }
-  });
-});
-//Teste
-
 
 
 const ID_GLAUBER = "413368679313440769";
@@ -55,19 +23,7 @@ const ID_ANA = "127792441238487040";
 const ID_RUBAO = "1355243350869020873";
 const ID_SORROW = "806241214302781466";
 const ID_CLARY = "923638823123030016";
-
-client.on("messageCreate", async (message) => {
-  if (message.author.bot) return;
-  if (message.author.id === ID_RUBAO) {
-    try {
-      const ate = new Date(Date.now() + 60_000);
-      await message.member.timeout(ate - Date.now(), "Falou");
-    } catch (err) {
-      console.error(err);
-    }
-  }
-}); 
-
+const CANAL_DESTINO = "1515169300145639470";
 const frasesElvi = [
   "branco",
   "preto",
@@ -112,6 +68,44 @@ const sleeperAgent = [
   "TTGL",
   "Gurren Lagann"
 ];
+
+
+client.on("messageCreate", async (message) => {
+  if (message.author.bot) return;
+
+  if (!message.guild && message.author.id === ID_ANA) {
+    try {
+      if (!message.content.startsWith("send ")) return;
+
+      const texto = message.content.slice(5);
+
+      const canal = await client.channels.fetch(CANAL_DESTINO);
+
+      if (!canal?.isTextBased()) {
+        return await message.reply("Canal inválido.");
+      }
+
+      await canal.send(texto);
+      await message.reply("Mensagem enviada.");
+    } catch (err) {
+      console.error(err);
+      await message.reply("Erro ao enviar.");
+    }
+  }
+});
+
+
+client.on("messageCreate", async (message) => {
+  if (message.author.bot) return;
+  if (message.author.id === ID_RUBAO) {
+    try {
+      const ate = new Date(Date.now() + 60_000);
+      await message.member.timeout(ate - Date.now(), "Falou");
+    } catch (err) {
+      console.error(err);
+    }
+  }
+}); 
 
 
 client.on("messageCreate", (message) => {
