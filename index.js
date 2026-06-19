@@ -1,5 +1,5 @@
 require("dotenv").config(); 
-console.log(`Token length: ${process.env.TOKEN?.length ?? 0}`);
+console.log(`Token length: ${process.env.TOKEN?.length ?? 0}`); //teste
 const { Client, GatewayIntentBits, Partials} = require("discord.js");
 
 const client = new Client({
