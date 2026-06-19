@@ -159,11 +159,11 @@ const nomeCanal = message.channel.name?.toLowerCase() || "";
   ){
     if(texto)message.reply("caralho elvi para de ser racista")
   }
-  if(
+  /*if(
     message.author.id === ID_SORROW && frasesElvi.some(frase => texto.includes(frase)) // adiciona o sorrow nas frases
   ){
     if(texto)message.reply("pqp sorrow para de ser racista porra")
-  }
+  }*/
   if(
     message.author.id === ID_SORROW && texto.includes("judeu")){
       message.reply("https://cdn.discordapp.com/attachments/1051599284342116362/1516140812008689674/Screenshot_20260615_150035_Discord2.jpg?ex=6a32386a&is=6a30e6ea&hm=504251b8296397643ceee2285e82ee6d4888d2ec3b3e3f21123a66c0f52d6b83&")
