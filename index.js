@@ -224,7 +224,7 @@ const nomeCanal = message.channel.name?.toLowerCase() || "";
   if (texto.includes(`<@${ID_NETO}>`)){
     message.reply("https://tenor.com/view/rem-deadlock-belly-meme-gif-6285562892747082921")
   }
-  if (texto.includes("adolf"){
+  if (texto.includes("adolf")){
     message.reply("https://media.discordapp.net/attachments/1516784959325601842/1521129724888481972/IMG-20260628-WA0036.jpg?ex=6a43b5f3&is=6a426473&hm=8b04e38e8b62bf59705877b978e6f5bb4a3de1c226578784a58b5a456c540235&=&format=webp&width=964&height=839")
   }
 });
