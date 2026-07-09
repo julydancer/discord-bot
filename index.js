@@ -41,8 +41,7 @@ const frasesElvi = [
   "nordeste",
   "sul",
   "nordestino",
-  "sulista",
-  "sp"
+  "sulista"
 ];
 const sleeperAgent = [
   "twst",
