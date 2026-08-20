@@ -23,6 +23,7 @@ const ID_RUBAO = "1355243350869020873";
 const ID_SORROW = "806241214302781466";
 const ID_CLARY = "923638823123030016";
 const CANAL_DESTINO = "1021430506031677462";
+const ID_CAPETA =  "1496004825777963110";
 const frasesElvi = [
   "branco",
   "preto",
@@ -137,6 +138,10 @@ const nomeCanal = message.channel.name?.toLowerCase() || "";
   }
   if (texto.includes(`<@${ID_TAKESHI}>`)){
     message.reply("https://tenor.com/view/takeshi-takeshi-moment-thumbs-up-ta-takesh-gif-24206951")
+  }
+  if message.author.id === ID_CAPETA &&
+    texto.includes("genshin") ){
+    message.reply("nao, a elvi não vai jogar genshin contigo")
   }
     
   if(
