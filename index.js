@@ -24,6 +24,7 @@ const ID_SORROW = "806241214302781466";
 const ID_CLARY = "923638823123030016";
 const CANAL_DESTINO = "1021430506031677462";
 const ID_CAPETA =  "1496004825777963110";
+const ID_VEX = "1060796160446566461";
 const frasesElvi = [
   "branco",
   "preto",
@@ -72,7 +73,7 @@ const sleeperAgent = [
 client.on("messageCreate", async (message) => {
   if (message.author.bot) return;
 
-  if (!message.guild && message.author.id === ID_ANA) {
+  if (!message.guild && message.author.id === ID_ANA or message.author.id === ID_VEX) {
     try {
       if (!message.content.startsWith("send ")) return;
 
