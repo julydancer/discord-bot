@@ -25,6 +25,7 @@ const ID_CLARY = "923638823123030016";
 const CANAL_DESTINO = "1021430506031677462";
 const ID_CAPETA =  "1496004825777963110";
 const ID_VEX = "1060796160446566461";
+const ID_VERME = "810034760385560579";
 const frasesElvi = [
   "branco",
   "preto",
@@ -124,6 +125,12 @@ const nomeCanal = message.channel.name?.toLowerCase() || "";
     texto.includes("bom dia")
   ) {
     message.reply("vai se fuder mlk");
+  }
+  else if (
+    message.author.id === ID_VERME &&
+    texto.includes("bom dia")
+  ) {
+    message.reply("eu espero que você sofra eternamente");
   }
   else if(message.author.id !== ID_GLAUBER && texto.includes("bom dia"))
   {
