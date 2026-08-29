@@ -74,7 +74,7 @@ const sleeperAgent = [
 client.on("messageCreate", async (message) => {
   if (message.author.bot) return;
 
-  if (!message.guild && message.author.id === ID_ANA or message.author.id === ID_VEX) {
+  if (!message.guild && message.author.id === ID_ANA || message.author.id === ID_VEX) {
     try {
       if (!message.content.startsWith("send ")) return;
 
