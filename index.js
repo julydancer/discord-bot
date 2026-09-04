@@ -1,17 +1,42 @@
-require("dotenv").config(); 
-const { Client, GatewayIntentBits, Partials} = require("discord.js");
+require("dotenv").config();
 
-const client = new Client({
-  intents: [
-    GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.MessageContent,
-    GatewayIntentBits.GuildMembers,
-    GatewayIntentBits.DirectMessages,
-  ],
-  partials: [Partials.Channel],
+const {
+  Client,
+  GatewayIntentBits,
+  Partials
+} = require("discord.js");
+
+// ======================================================
+// CONFIGURAÇÃO DOS INTENTS
+// ======================================================
+
+const intents = [
+  GatewayIntentBits.Guilds,
+  GatewayIntentBits.GuildMessages,
+  GatewayIntentBits.MessageContent,
+  GatewayIntentBits.GuildMembers,
+  GatewayIntentBits.DirectMessages,
+];
+
+const partials = [Partials.Channel];
+
+// ======================================================
+// CLIENTES
+// ======================================================
+
+const sans = new Client({
+  intents,
+  partials
 });
 
+const papyrus = new Client({
+  intents,
+  partials
+});
+
+// ======================================================
+// SANS
+// ======================================================
 
 const ID_GLAUBER = "413368679313440769";
 const ID_TAKESHI = "334331130927120386";
@@ -22,9 +47,10 @@ const ID_RUBAO = "1355243350869020873";
 const ID_SORROW = "806241214302781466";
 const ID_CLARY = "923638823123030016";
 const CANAL_DESTINO = "1021430506031677462";
-const ID_CAPETA =  "1496004825777963110";
+const ID_CAPETA = "1496004825777963110";
 const ID_VEX = "1060796160446566461";
 const ID_VERME = "810034760385560579";
+
 const frasesElvi = [
   "branco",
   "preto",
@@ -45,6 +71,7 @@ const frasesElvi = [
   "nordestino",
   "sulista"
 ];
+
 const sleeperAgent = [
   "twst",
   "twisted wonderland",
@@ -69,17 +96,23 @@ const sleeperAgent = [
   "Gurren Lagann"
 ];
 
+// ======================================================
+// SANS - COMANDO SEND POR DM
+// ======================================================
 
-client.on("messageCreate", async (message) => {
+sans.on("messageCreate", async (message) => {
   if (message.author.bot) return;
 
-  if (!message.guild && message.author.id === ID_ANA || message.author.id === ID_VEX) {
+  if (
+    !message.guild &&
+    (message.author.id === ID_ANA || message.author.id === ID_VEX)
+  ) {
     try {
       if (!message.content.startsWith("send ")) return;
 
       const texto = message.content.slice(5);
 
-      const canal = await client.channels.fetch(CANAL_DESTINO);
+      const canal = await sans.channels.fetch(CANAL_DESTINO);
 
       if (!canal?.isTextBased()) {
         return await message.reply("Canal inválido.");
@@ -87,6 +120,7 @@ client.on("messageCreate", async (message) => {
 
       await canal.send(texto);
       await message.reply("Mensagem enviada.");
+
     } catch (err) {
       console.error(err);
       await message.reply("Erro ao enviar.");
@@ -94,24 +128,43 @@ client.on("messageCreate", async (message) => {
   }
 });
 
+// ======================================================
+// SANS - TIMEOUT DO RUBÃO
+// ======================================================
 
-client.on("messageCreate", async (message) => {
+sans.on("messageCreate", async (message) => {
   if (message.author.bot) return;
+
   if (message.author.id === ID_RUBAO) {
     try {
       const ate = new Date(Date.now() + 60_000);
-      await message.member.timeout(ate - Date.now(), "Falou");
+
+      if (message.member) {
+        await message.member.timeout(
+          ate - Date.now(),
+          "Falou"
+        );
+      }
+
     } catch (err) {
       console.error(err);
     }
   }
-}); 
+});
 
+// ======================================================
+// SANS - RESPOSTAS
+// ======================================================
 
-client.on("messageCreate", (message) => {
+sans.on("messageCreate", (message) => {
   if (message.author.bot) return;
+
   const texto = message.content.toLowerCase().trim();
-const nomeCanal = message.channel.name?.toLowerCase() || "";
+  const nomeCanal = message.channel.name?.toLowerCase() || "";
+
+  // -------------------------------
+  // BOM DIA
+  // -------------------------------
 
   if (
     message.author.id === ID_GLAUBER &&
@@ -119,125 +172,298 @@ const nomeCanal = message.channel.name?.toLowerCase() || "";
   ) {
     message.reply("sucumba glauber");
   }
+
   else if (
     message.author.id === ID_ELVI &&
     texto.includes("bom dia")
   ) {
     message.reply("vai se fuder mlk");
   }
+
   else if (
     message.author.id === ID_VERME &&
     texto.includes("bom dia")
   ) {
     message.reply("eu espero que você sofra eternamente");
   }
-  else if(message.author.id !== ID_GLAUBER && texto.includes("bom dia"))
-  {
-    message.reply("Tenha um ótimo dia! Você é incrivel!")
-  } 
-  else if(message.author.id === ID_GLAUBER && texto.includes("respeita"))
-  {
-    message.reply("Não glauber, ninguem te respeita")
+
+  else if (
+    message.author.id !== ID_GLAUBER &&
+    texto.includes("bom dia")
+  ) {
+    message.reply("Tenha um ótimo dia! Você é incrivel!");
   }
-  
-  if (message.author.id === ID_NETO && texto.includes(`<@${ID_SORROW}>`)){
-    message.reply("https://tenor.com/view/hot-guy-kissing-gif-19715425")
+
+  // -------------------------------
+  // RESPEITA
+  // -------------------------------
+
+  if (
+    message.author.id === ID_GLAUBER &&
+    texto.includes("respeita")
+  ) {
+    message.reply("Não glauber, ninguem te respeita");
   }
-  if (texto.includes(`<@${ID_TAKESHI}>`)){
-    message.reply("https://tenor.com/view/takeshi-takeshi-moment-thumbs-up-ta-takesh-gif-24206951")
+
+  // -------------------------------
+  // NETO + SORROW
+  // -------------------------------
+
+  if (
+    message.author.id === ID_NETO &&
+    texto.includes(`<@${ID_SORROW}>`)
+  ) {
+    message.reply(
+      "https://tenor.com/view/hot-guy-kissing-gif-19715425"
+    );
   }
-  if (message.author.id === ID_CAPETA &&
-    texto.includes("genshin") ){
-    message.reply("nao, a elvi não vai jogar genshin contigo")
+
+  // -------------------------------
+  // TAKESHI
+  // -------------------------------
+
+  if (texto.includes(`<@${ID_TAKESHI}>`)) {
+    message.reply(
+      "https://tenor.com/view/takeshi-takeshi-moment-thumbs-up-ta-takesh-gif-24206951"
+    );
   }
-    
-  if(
+
+  // -------------------------------
+  // CAPETA + GENSHIN
+  // -------------------------------
+
+  if (
+    message.author.id === ID_CAPETA &&
+    texto.includes("genshin")
+  ) {
+    message.reply(
+      "nao, a elvi não vai jogar genshin contigo"
+    );
+  }
+
+  // -------------------------------
+  // TAKESHI + SAAS
+  // -------------------------------
+
+  if (
     message.author.id === ID_TAKESHI &&
     texto.includes("saas")
   ) {
-    message.reply("https://tenor.com/view/eddie-zato-zato-guilty-gear-eddie-clap-rde-gif-13918902029952866835")
+    message.reply(
+      "https://tenor.com/view/eddie-zato-zato-guilty-gear-eddie-clap-rde-gif-13918902029952866835"
+    );
   }
-  if(
-    message.author.id === ID_TAKESHI && 
-    (texto.includes("filipinos") 
-    ||texto.includes("filipina"))){
-    message.reply("ainda bem que o takeshi ama filipinos")
-    message.reply("https://tenor.com/view/proud-to-be-filipino-jhon-mark-perez-kapitaaannn-pinoy-masaya-gif-17020131")
+
+  // -------------------------------
+  // TAKESHI + FILIPINOS
+  // -------------------------------
+
+  if (
+    message.author.id === ID_TAKESHI &&
+    (
+      texto.includes("filipinos") ||
+      texto.includes("filipina")
+    )
+  ) {
+    message.reply(
+      "ainda bem que o takeshi ama filipinos"
+    );
+
+    message.reply(
+      "https://tenor.com/view/proud-to-be-filipino-jhon-mark-perez-kapitaaannn-pinoy-masaya-gif-17020131"
+    );
   }
-  if(
-    message.author.id === ID_ELVI && frasesElvi.some(frase => texto.includes(frase)) // adiciona a elvi nas frases
-  ){
-    if(texto)message.reply("caralho elvi para de ser racista")
-  }
-  /*if(
-    message.author.id === ID_SORROW && frasesElvi.some(frase => texto.includes(frase)) // adiciona o sorrow nas frases
-  ){
-    if(texto)message.reply("pqp sorrow para de ser racista porra")
-  }*/
-  if(
-    message.author.id === ID_SORROW && texto.includes("judeu")){
-      message.reply("https://cdn.discordapp.com/attachments/1051599284342116362/1516140812008689674/Screenshot_20260615_150035_Discord2.jpg?ex=6a32386a&is=6a30e6ea&hm=504251b8296397643ceee2285e82ee6d4888d2ec3b3e3f21123a66c0f52d6b83&")
+
+  // -------------------------------
+  // ELVI + FRASES
+  // -------------------------------
+
+  if (
+    message.author.id === ID_ELVI &&
+    frasesElvi.some(frase => texto.includes(frase))
+  ) {
+    if (texto) {
+      message.reply(
+        "caralho elvi para de ser racista"
+      );
     }
-  if(
-    message.author.id === ID_ANA &&
-    texto.includes("teste")
-  ){
-    message.reply("GET 200")
   }
-  if(
-    message.author.id === ID_ANA &&
-    texto.includes("push")
-  ){
-    message.reply("PUSH 200")
+
+  // -------------------------------
+  // SORROW + JUDEU
+  // -------------------------------
+
+  if (
+    message.author.id === ID_SORROW &&
+    texto.includes("judeu")
+  ) {
+    message.reply(
+      "https://cdn.discordapp.com/attachments/1051599284342116362/1516140812008689674/Screenshot_20260615_150035_Discord2.jpg?ex=6a32386a&is=6a30e6ea&hm=504251b8296397643ceee2285e82ee6d4888d2ec3b3e3f21123a66c0f52d6b83&"
+    );
   }
-  if(
-    texto.includes("cola hunt")
-  ){
-    message.reply("https://tenor.com/view/hunt-showdown-hunt-hunt-meme-get-on-hunt-showdown-gif-24553870")
+
+
+  // -------------------------------
+  // HUNT
+  // -------------------------------
+
+  if (texto.includes("cola hunt")) {
+    message.reply(
+      "https://tenor.com/view/hunt-showdown-hunt-hunt-meme-get-on-hunt-showdown-gif-24553870"
+    );
   }
-  if(
-    texto.includes("bo hunt")
-  ){
-    message.reply("https://tenor.com/view/hunt-showdown-cowboy-cyber-punk-bayou-katana-gif-14008885467956326906")
+
+  if (texto.includes("bo hunt")) {
+    message.reply(
+      "https://tenor.com/view/hunt-showdown-cowboy-cyber-punk-bayou-katana-gif-14008885467956326906"
+    );
   }
-  if(
-    texto.includes("bora hunt")
-  ){
-    message.reply("https://tenor.com/view/hunt-showdown-get-on-hunt-get-on-hunt-showdown-bro-get-on-hunt-showdown-this-could-be-us-gif-85665306913320641")
+
+  if (texto.includes("bora hunt")) {
+    message.reply(
+      "https://tenor.com/view/hunt-showdown-get-on-hunt-get-on-hunt-showdown-bro-get-on-hunt-showdown-this-could-be-us-gif-85665306913320641"
+    );
   }
-  if(
-    texto.includes("sem hunt")
-  ){
-    message.reply("https://tenor.com/view/hunt-showdown-hunt-meme-hunt-showdown-meme-hunt-showdown-get-on-hunt-get-on-hunt-gif-16078836551526038956")
+
+  if (texto.includes("sem hunt")) {
+    message.reply(
+      "https://tenor.com/view/hunt-showdown-hunt-meme-hunt-showdown-meme-hunt-showdown-get-on-hunt-get-on-hunt-gif-16078836551526038956"
+    );
   }
-  if(
-    texto.includes("zero hunt")
-  ){
-    message.reply("https://tenor.com/view/hunt-showdown-cant-get-on-hunt-when-bro-cant-get-on-hunt-hunt-meme-hunt-showdown-meme-gif-14538438963849915163")
+
+  if (texto.includes("zero hunt")) {
+    message.reply(
+      "https://tenor.com/view/hunt-showdown-cant-get-on-hunt-when-bro-cant-get-on-hunt-hunt-meme-hunt-showdown-meme-gif-14538438963849915163"
+    );
   }
-  if(
-    texto.includes("pix")
-  ){
-    message.reply("https://livepix.gg/julydancer")
+
+  // -------------------------------
+  // PIX
+  // -------------------------------
+
+  if (texto.includes("pix")) {
+    message.reply(
+      "https://livepix.gg/julydancer"
+    );
   }
-  /*if (texto.includes(`<@${ID_CLARY}>`)){
-    message.reply("https://media.discordapp.net/attachments/1515169300145639470/1516134338427748392/Screenshot_20260615-1436152.jpg?ex=6a3189a2&is=6a303822&hm=4cba158c8fa8a51c91804d6a92ce0d52040bafd54e8fc12f35a6e711f3074fa8&=&format=webp")
-  }*/
+
+  // -------------------------------
+  // SLEEPER AGENT
+  // -------------------------------
+
   if (
     !nomeCanal.includes("mudae") &&
-    sleeperAgent.some(frase => texto.includes(frase.toLowerCase()))
+    sleeperAgent.some(frase =>
+      texto.includes(frase.toLowerCase())
+    )
   ) {
-    message.reply(`vai lá autista <@${ID_ANA}>, brilha`);
+    message.reply(
+      `vai lá autista <@${ID_ANA}>, brilha`
+    );
   }
-  if (texto.includes("mamdo") || texto.includes("mambo")) {
-    message.reply("https://tenor.com/view/mambo-uma-musume-gif-4231814947166331056")
+
+  // -------------------------------
+  // MAMDO / MAMBO
+  // -------------------------------
+
+  if (
+    texto.includes("mamdo") ||
+    texto.includes("mambo")
+  ) {
+    message.reply(
+      "https://tenor.com/view/mambo-uma-musume-gif-4231814947166331056"
+    );
   }
-  if (texto.includes(`<@${ID_NETO}>`)){
-    message.reply("https://tenor.com/view/rem-deadlock-belly-meme-gif-6285562892747082921")
+
+  // -------------------------------
+  // NETO
+  // -------------------------------
+
+  if (texto.includes(`<@${ID_NETO}>`)) {
+    message.reply(
+      "https://tenor.com/view/rem-deadlock-belly-meme-gif-6285562892747082921"
+    );
   }
-  if (texto.includes("adolf")){
-    message.reply("https://media.discordapp.net/attachments/1516784959325601842/1521129724888481972/IMG-20260628-WA0036.jpg?ex=6a43b5f3&is=6a426473&hm=8b04e38e8b62bf59705877b978e6f5bb4a3de1c226578784a58b5a456c540235&=&format=webp&width=964&height=839")
+
+  // -------------------------------
+  // ADOLF
+  // -------------------------------
+
+  if (texto.includes("adolf")) {
+    message.reply(
+      "https://media.discordapp.net/attachments/1516784959325601842/1521129724888481972/IMG-20260628-WA0036.jpg?ex=6a43b5f3&is=6a426473&hm=8b04e38e8b62bf59705877b978e6f5bb4a3de1c226578784a58b5a456c540235&=&format=webp&width=964&height=839"
+    );
   }
 });
+
+// ======================================================
+// PAPYRUS
+// ======================================================
+
+const ID_SNAS = "1463326466531000400";
+
+// ======================================================
+// PAPYRUS - COMANDO SEND POR DM
+// ======================================================
+
+papyrus.on("messageCreate", async (message) => {
+  if (message.author.bot) return;
+
+  if (
+    !message.guild &&
+    (message.author.id === ID_VEX || message.author.id === ID_ANA)
+  ) {
+    try {
+      if (!message.content.startsWith("send ")) return;
+
+      const texto = message.content.slice(5);
+
+      const canal = await papyrus.channels.fetch(CANAL_DESTINO);
+
+      if (!canal?.isTextBased()) {
+        return await message.reply("Canal inválido.");
+      }
+
+      await canal.send(texto);
+      await message.reply("Mensagem enviada.");
+
+    } catch (err) {
+      console.error(err);
+      await message.reply("Erro ao enviar.");
+    }
+  }
+});
+
+// ======================================================
+// PAPYRUS - OUTRAS RESPOSTAS
+// ======================================================
+
+papyrus.on("messageCreate", (message) => {
+  if (message.author.bot) return;
+
+  const texto = message.content.toLowerCase().trim();
+  const nomeCanal = message.channel.name?.toLowerCase() || "";
+
   
-client.login(process.env.TOKEN);
+
+});
+
+// ======================================================
+// READY
+// ======================================================
+
+sans.once("ready", () => {
+  console.log(`Sans conectado como ${sans.user.tag}`);
+});
+
+papyrus.once("ready", () => {
+  console.log(`Papyrus conectado como ${papyrus.user.tag}`);
+});
+
+// ======================================================
+// LOGIN DOS DOIS BOTS
+// ======================================================
+
+sans.login(process.env.TOKEN_SANS);
+
+papyrus.login(process.env.TOKEN_PAPYRUS);
